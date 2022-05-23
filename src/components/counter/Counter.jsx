@@ -30,9 +30,9 @@ class Counter extends Component{
             </div>
         );
     }
-    reset(by){
+    reset(){
         this.setState(
-            (prevState)=>{
+            ()=>{
                 return {counter: 0}
             });
 
@@ -58,11 +58,7 @@ class Counter extends Component{
 class CounterButton extends Component{
     constructor() {
         super();
-        // this.state = {
-        //     counter: 0
-        // }
-        // this.increment= this.increment.bind(this);
-        // this.decrement = this.decrement.bind(this);
+
     }
     render ()  {
         return (
