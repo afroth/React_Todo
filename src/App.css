@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+/*asdf*********************************************/
+button{
+  background-color: green;
+  font-size: 16px;
+  color: white;
+  padding: 15px 30px;
+  width: 100px;
+  border: none;
+
+}
+.count{
+
+  font-size: 50px;
+  padding: 15px 30px;
+}
+.reset{
+  background-color: red;
+  font-size: 16px;
+  color: white;
+  padding: 15px 30px;
+  width: 200px;
+}
