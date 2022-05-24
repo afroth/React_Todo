@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import AuthenticationService from "./AuthenticationService.js";
 
 
 class LoginComponent extends Component{
@@ -17,6 +18,25 @@ class LoginComponent extends Component{
     }// end constructor
 
     //------------------------------------------------------------------------------------
+    render(){
+        const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
+
+        return(
+            <div>
+                <h1>Login</h1>
+                <div className="container">
+
+                    {this.state.loginFailed && <div className="alert alert-warning">Invalid Credentials</div>}
+                    Username: <input type = "text" name = "username" value ={this.state.username}
+                                     onChange ={this.handleChange}/>
+                    Password: <input type = "password" name = "password" value ={this.state.password}
+                                     onChange ={this.handleChange}/>
+                    <button className="btn btn=success" onClick = {this.loginClicked}>Login</button>
+                </div>
+            </div>
+        )
+    }// end render
+    //------------------------------------------------------------------------------------
     handleChange(event){
         console.log(event.target.value);
         this.setState(
@@ -30,31 +50,14 @@ class LoginComponent extends Component{
     // //------------------------------------------------------------------------------------
     loginClicked(){
         if(this.state.username ==='new-user'&& this.state.password === 'password' ){
-            console.log("Success")
+            AuthenticationService.registerSuccessfulLogin(this.state.username,this.state.password)
+
             this.props.navigate(`/welcome/${this.state.username}`)
         }
         else {
-            console.log("fail")
             this.setState({loginSuccess:false})
             this.setState({loginFailed:true})
         }
     }
-
-    //------------------------------------------------------------------------------------
-    render(){
-        return(
-            <div>
-
-                {this.state.loginFailed && <div>Invalid Credentials</div>}
-
-                Username: <input type = "text" name = "username" value ={this.state.username}
-                                 onChange ={this.handleChange}/>
-                Password: <input type = "password" name = "password" value ={this.state.password}
-                                 onChange ={this.handleChange}/>
-                <button onClick = {this.loginClicked}>Login</button>
-            </div>
-        )
-    }// end render
-
 }// end class LoginComponent.jsx
 export default LoginComponent

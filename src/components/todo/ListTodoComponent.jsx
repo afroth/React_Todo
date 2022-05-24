@@ -18,32 +18,31 @@ class ListTodoComponent extends Component{
             <div>
 
             <h1>List todos</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Description</th>
-                        <th>is Completed ?</th>
-                        <th>Target Date</th>
+                <div className="container">
+                    <table className="table">
+                        <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>is Completed ?</th>
+                            <th>Target Date</th>
 
-                    </tr>
-                </thead>
-                <tbody>
-                {
-                    this.state.todo.map(
-                        todo =>
-                            <tr>
-                                <th>{todo.id}</th>
-                                <th>{todo.description}</th>
-                                <th>{todo.done.toString()}</th>
-                                <th>{todo.targetDate.toString()}</th>
-                            </tr>
-                    )
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            this.state.todo.map(
+                                todo =>
+                                    <tr key = {todo.id}>
+                                        <th>{todo.description}</th>
+                                        <th>{todo.done.toString()}</th>
+                                        <th>{todo.targetDate.toString()}</th>
+                                    </tr>
+                            )
+                        }
+                        </tbody>
+                    </table>
+                </div>
 
-                }
-
-                </tbody>
-            </table>
             </div>)
     }
 
