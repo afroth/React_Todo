@@ -15,10 +15,11 @@ import AuthenticatedRoute from "./AuthenticatedRoute";
 class TodoApp extends Component{
 
     render(){
+        const ListTodoComponentWithParams = withNavigation(ListTodoComponent);
         const LoginComponentWithNavigation = withNavigation(LoginComponent);
         const HeaderComponentWithNavigation = withNavigation(HeaderComponent);
+
         const WelcomeComponentWithParams = withParams(WelcomeComponent);
-        const ListTodoComponentWithParams = withParams(ListTodoComponent);
 
         return(
             <div className = "todo-app">

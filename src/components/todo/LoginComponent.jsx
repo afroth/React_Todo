@@ -19,7 +19,6 @@ class LoginComponent extends Component{
 
     //------------------------------------------------------------------------------------
     render(){
-        const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
 
         return(
             <div>
@@ -31,7 +30,7 @@ class LoginComponent extends Component{
                                      onChange ={this.handleChange}/>
                     Password: <input type = "password" name = "password" value ={this.state.password}
                                      onChange ={this.handleChange}/>
-                    <button className="btn btn=success" onClick = {this.loginClicked}>Login</button>
+                    <button className="btn btn-success" onClick = {this.loginClicked}>Login</button>
                 </div>
             </div>
         )

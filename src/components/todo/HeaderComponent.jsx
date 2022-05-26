@@ -11,7 +11,7 @@ class HeaderComponent extends Component{
         return(
                 <header>
                     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-                      <div><a href = "https://afroth.github.io" target="_blank" className="navbar-brand"> PortFolio</a></div>
+                      <div><a href = "https://afroth.github.io" target="_blank" className="navbar-brand" rel="noreferrer"> PortFolio</a></div>
                       <ul className="navbar-nav">
                           {isUserLoggedIn && <li><Link className="nav-link" to='/welcome/new-user' element={
                                   <WelcomeComponentWithParams />
