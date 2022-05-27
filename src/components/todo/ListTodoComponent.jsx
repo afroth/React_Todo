@@ -12,10 +12,13 @@ class ListTodoComponent extends Component{
             todo :[ ],
             message: null
         }
+        // binding method to constructor
         this.deleteTodoClicked = this.deleteTodoClicked.bind(this)
         this.refreshTodos = this.refreshTodos.bind(this)
+        this.updateTodoClicked= this.updateTodoClicked.bind(this)
     }// end constructor
 
+    //***********************************************************************************
     // gets the data from the objects passed in the backend and set the state
     // for to do.
     componentDidMount(){
@@ -23,17 +26,18 @@ class ListTodoComponent extends Component{
 
     }// end comp mount
 
+    //***********************************************************************************
     refreshTodos(){
         let username = AuthenticationService.getLoggedInUserName()
         TodoDataService.retrieveTodos(username)
             .then(
                 response =>{
-                    console.log(response)
                     this.setState({todo: response.data})
                 }
             )
     }// end comp mount
 
+    //***********************************************************************************
     deleteTodoClicked(id){
         let username = AuthenticationService.getLoggedInUserName()
         TodoDataService.deleteTodos(username, id)
@@ -43,6 +47,12 @@ class ListTodoComponent extends Component{
                     this.refreshTodos()
                 }
             )
+    }
+    //***********************************************************************************
+    // when the update button is clicked navigate to to-do id
+    updateTodoClicked(id){
+        this.props.navigate(`/todos/${id}`)
+
     }
     render(){
         return (
@@ -70,7 +80,7 @@ class ListTodoComponent extends Component{
                                         <th>{todo.description}</th>
                                         <th>{todo.completed.toString()}</th>
                                         <th>{todo.targetDate.toString()}</th>
-                                        <td><button className="btn btn-warning">Update</button></td>
+                                        <td><button className="btn btn-success" onClick ={()=>this.updateTodoClicked(todo.id)}>Update</button></td>
                                         <td><button className="btn btn-danger" onClick ={()=>this.deleteTodoClicked(todo.id)}>
                                             Delete
                                         </button></td>

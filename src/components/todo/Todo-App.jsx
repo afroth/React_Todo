@@ -10,6 +10,7 @@ import HeaderComponent from "./HeaderComponent";
 import FooterComponent from "./FooterComponent";
 import LogoutComponent from "./LogoutComponent";
 import AuthenticatedRoute from "./AuthenticatedRoute";
+import TodoComponent from "./TodoComponent";
 
 
 class TodoApp extends Component{
@@ -18,7 +19,7 @@ class TodoApp extends Component{
         const ListTodoComponentWithParams = withNavigation(ListTodoComponent);
         const LoginComponentWithNavigation = withNavigation(LoginComponent);
         const HeaderComponentWithNavigation = withNavigation(HeaderComponent);
-
+        const TodoComponentWithParamsAndNavigation = withParams(withNavigation(TodoComponent));
         const WelcomeComponentWithParams = withParams(WelcomeComponent);
 
         return(
@@ -33,6 +34,11 @@ class TodoApp extends Component{
                                                                     <WelcomeComponentWithParams />
                                                                 </AuthenticatedRoute>
                         } />
+                        <Route path="/todos/:id" element={
+                                                                <AuthenticatedRoute>
+                                                                    <TodoComponentWithParamsAndNavigation />
+                                                                </AuthenticatedRoute>
+                        } />
                         <Route path="/todos" element={
                                                                 <AuthenticatedRoute>
                                                                     <ListTodoComponentWithParams />
@@ -43,6 +49,7 @@ class TodoApp extends Component{
                                                                     <LogoutComponent />
                                                                 </AuthenticatedRoute>
                         } />
+
                         <Route path="*" element={<ErrorComponent />} />
                     </Routes>
                     <FooterComponent/>
