@@ -24,6 +24,14 @@ class TodoComponent extends Component{
     }// end constructor
 
     componentDidMount(){
+
+        if(this.state.id === -1){
+            return
+        }
+        else{
+
+        }
+
         // how we are getting the username of logged in user
         let username = AuthenticationService.getLoggedInUserName()
         // function call to retrieve to do by username and id
@@ -42,11 +50,28 @@ class TodoComponent extends Component{
 
     // function is called when the submit button is clicked
     onSubmit(values){
-       console.log(values)
+        let username = AuthenticationService.getLoggedInUserName()
+
+        let todo = {
+            id: this.state.id,
+            description: values.description,
+            targetDate: values.targetDate
+        }
+
+        if (this.state.id === -1) {
+            TodoDataService.createTodo(username, todo)
+                .then(() => this.props.navigate('/todos'))
+
+        } else {
+            TodoDataService.updateTodo(username, this.state.id, todo)
+                .then(() => this.props.navigate('/todos'))
+        }
+
+
     }// end onSubmit
 
     // validate the values in the description and date box
-    validate(values){
+     validate(values){
         // empty object errors
         let errors = {}
 

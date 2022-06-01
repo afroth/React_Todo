@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import TodoDataService from "../../api/todo/TodoDataService";
 import AuthenticationService from "./AuthenticationService";
+import moment from "moment";
 
 class ListTodoComponent extends Component{
 
@@ -16,6 +17,7 @@ class ListTodoComponent extends Component{
         this.deleteTodoClicked = this.deleteTodoClicked.bind(this)
         this.refreshTodos = this.refreshTodos.bind(this)
         this.updateTodoClicked= this.updateTodoClicked.bind(this)
+        this.addNewClicked= this.addNewClicked.bind(this)
     }// end constructor
 
     //***********************************************************************************
@@ -54,6 +56,15 @@ class ListTodoComponent extends Component{
         this.props.navigate(`/todos/${id}`)
 
     }
+    //***********************************************************************************
+    //
+   addNewClicked(){
+        this.props.navigate(`/todos/-1`)
+
+    }
+
+    //***********************************************************************************
+    //
     render(){
         return (
             <div>
@@ -79,7 +90,7 @@ class ListTodoComponent extends Component{
                                     <tr key = {todo.id}>
                                         <th>{todo.description}</th>
                                         <th>{todo.completed.toString()}</th>
-                                        <th>{todo.targetDate.toString()}</th>
+                                        <td>{moment(todo.targetDate).format('YYYY-MM-DD')}</td>
                                         <td><button className="btn btn-success" onClick ={()=>this.updateTodoClicked(todo.id)}>Update</button></td>
                                         <td><button className="btn btn-danger" onClick ={()=>this.deleteTodoClicked(todo.id)}>
                                             Delete
@@ -89,6 +100,10 @@ class ListTodoComponent extends Component{
                         }
                         </tbody>
                     </table>
+                    <div className="container">
+                        <button className ="btn btn-success"onClick ={()=>this.addNewClicked()}>Add New</button>
+
+                    </div>
                 </div>
             </div>)
     }// end render
